@@ -10,13 +10,13 @@
   border-radius: 5px;
 }
 
- h2{
+ .new-tweet h2{
   margin-top: 5px;
   text-align: left;
   border-bottom:1px solid #313030
 }
 
- textarea {
+ .new-tweet textarea {
   width:100%;
   padding: 3px;
 }

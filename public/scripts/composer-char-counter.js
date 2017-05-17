@@ -1,12 +1,13 @@
  $(document).ready(function () {
   var maxlength = 140;
-  $("textarea").on("keyup", function (){
+  $("textarea").on("input", function (){
     var length = maxlength - ($(this).val().length);
-    $(this).parent().find('.counter').text(length);
+    let counter = $(this).parent().find('.counter');
+    counter.text(length);
     if( length <= 0){
-      $(this).parent().find('.counter').addClass('redmax')
+      counter.addClass('redmax')
     } else {
-      $(this).parent().find('.counter').removeClass('redmax');
+     counter.removeClass('redmax');
     }
  });
 });
