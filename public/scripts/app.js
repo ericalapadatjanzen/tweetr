@@ -54,11 +54,18 @@ var data = [
 var tweetContainer =  $('#tweets');
 
 function renderTweets(tweets){
-  for(ii = 0; ii < data.length; ii++){
-    let tweet = data[ii];
-    $("#tweet-container").append( createTweetElement(tweet));
+  for(ii = 0; ii < tweets.length; ii++){
+    let tweet = tweets[ii];
+    $("#tweet-container").append(createTweetElement(tweet));
   }
 }
+
+function escape(str) {
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 
 function createTweetElement(tweet){
   console.log("tweet", tweet);
@@ -67,10 +74,10 @@ function createTweetElement(tweet){
    <article>
       <header class="header">
         <img class="avatar" src="${tweet.user.avatars.small}">
-        <h2 class="name">${tweet.user.name}</h2>
-        <p class="handle">${tweet.user.handle}</p>
+        <h2 class="name">${escape(tweet.user.name)}</h2>
+        <p class="handle">${escape(tweet.user.handle)}</p>
       </header>
-      <article class="content">${tweet.content.text}</article>
+      <article class="content">${escape(tweet.content.text)}</article>
       <footer class="footer">
       <p class="daysAgo">${tweet.created_at}</p>
       </footer>
@@ -81,3 +88,17 @@ function createTweetElement(tweet){
 
 
 renderTweets(data);
+
+ $(document).ready(function () {
+  $("textarea").on("keyup", function (evt) {
+    if (evt.keyCode === 13) {
+      renderTweets([{
+        user: {avatars: {small: 'http://placehold.it/100x100'}, name: null, handle: null},
+        content: {text: $("textarea").val()},
+        created_at: Date.now()
+      }])
+    }
+ });
+
+
+});
