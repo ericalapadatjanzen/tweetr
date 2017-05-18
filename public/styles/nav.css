@@ -25,3 +25,22 @@
   padding-left: 10px;
 
 }
+
+#nav-bar .button{
+  opacity: 0.9;
+  color: #00a087;
+  font-size: 125%;
+  margin: 0.5em;
+  background-color: white;
+  -webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+  border: 1px solid black;
+  padding: 15px;
+  float: right;
+  border-radius: 5px
+}
+
+#nav-bar .button:hover{
+  color: black;
+  opacity:1;
+}

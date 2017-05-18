@@ -6,10 +6,14 @@
     counter.text(length);
     if( length <= 0){
       counter.addClass('redmax')
-    } else {
+    }else{
      counter.removeClass('redmax');
     }
- });
+
+    $("input").on("click", function(){
+      $('.counter').text('140');
+    });
+  });
 });
 
 
