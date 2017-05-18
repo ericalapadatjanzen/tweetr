@@ -14,7 +14,8 @@
     "body-parser": "^1.17.1",
     "chance": "^1.0.8",
     "express": "^4.15.2",
-    "md5": "^2.2.1"
+    "md5": "^2.2.1",
+    "mongodb": "^2.2.26"
   },
   "devDependencies": {
     "nodemon": "^1.9.2"

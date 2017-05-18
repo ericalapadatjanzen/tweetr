@@ -1,4 +1,4 @@
- $(document).ready(function () {
+$(document).ready(function () {
   var maxlength = 140;
   $("textarea").on("input", function (){
     var length = maxlength - ($(this).val().length);
