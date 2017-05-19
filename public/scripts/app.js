@@ -6,8 +6,6 @@
 $(document).ready(function() {
   var tweetContainer = $('#tweets');
 
-
-
   function escape(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
@@ -27,6 +25,9 @@ $(document).ready(function() {
         <p class="content">${escape(tweet.content.text)}</p>
         <footer class="footer">
           <abbr class="timeago" title="${date}"></abbr>
+          <img class="icons" src="/images/flag.png">
+          <img class="icons" src="/images/refresh.png">
+          <img class="icons" src="/images/heart.png">
         </footer>
       </article>
       `;
@@ -40,14 +41,12 @@ $(document).ready(function() {
       $("#tweet-container").prepend(createTweetElement(tweet));
     }
     $(".timeago").timeago();
-
   }
-
   $(".button").on("click", function() {
-      $(".new-tweet").slideToggle();
-      $("textarea").focus();
-      $("body").scrollTop(0);
-    });
+    $(".new-tweet").slideToggle();
+    $("textarea").focus();
+    $("body").scrollTop(0);
+  });
 
   function loadTweets() {
     $.ajax({
@@ -64,19 +63,20 @@ $(document).ready(function() {
       url: '/tweets',
       method: 'POST',
       data: data,
-      success: loadTweets
+      success: function(data) {
+        loadTweets();
+        $(".counter").text("140");
+      }
     });
   }
-
   loadTweets();
-
   $("form").on("submit", function(evt) {
     evt.preventDefault();
     let content = $("textarea").val();
     if (content.length === 0) {
-      alert("please enter a tweet");
+      $("#noTweet").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
     } else if (content.length > 140) {
-      alert("Your tweet is too long");
+      $("#tooMuchTweet").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
     } else {
       let formData = $(this).serialize();
       postTweets(formData);
