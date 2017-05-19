@@ -18,15 +18,17 @@
   border-bottom: 1px solid #313030
  }
 
-.new-tweet input {float: left;}
+.new-tweet input {
+  float: left;
+  background-color: #eee;
+  }
 
 .new-tweet .error {display: inline-block;}
 
-  .new-tweet .error p {
+.new-tweet .error p {
     margin: 0 20px;
     color: red;
-    font-weight: bold;
-   }
+}
 
 .new-tweet textarea {
   width: 100%;

@@ -12,9 +12,10 @@ $(document).ready(function() {
     return div.innerHTML;
   }
 
+
   function createTweetElement(tweet) {
     var $tweet = $('<article>').addClass('tweet');
-    const date = (new Date(tweet.created_at)).toISOString();
+    var date = (new Date(tweet.created_at)).toISOString();
     const html = `
       <article>
         <header class="header">
@@ -36,17 +37,19 @@ $(document).ready(function() {
 
   function renderTweets(tweets) {
     $("#tweet-container").empty();
-    for (var ii = 0; ii < tweets.length; ii++) {
-      let tweet = tweets[ii];
+    for (var i = 0; i < tweets.length; i++) {
+      var tweet = tweets[i];
       $("#tweet-container").prepend(createTweetElement(tweet));
     }
     $(".timeago").timeago();
   }
+
   $(".button").on("click", function() {
     $(".new-tweet").slideToggle();
     $("textarea").focus();
     $("body").scrollTop(0);
   });
+
 
   function loadTweets() {
     $.ajax({
@@ -65,22 +68,28 @@ $(document).ready(function() {
       data: data,
       success: function(data) {
         loadTweets();
-        $(".counter").text("140");
       }
     });
   }
+
   loadTweets();
+
   $("form").on("submit", function(evt) {
     evt.preventDefault();
-    let content = $("textarea").val();
+    var content = $("textarea").val();
     if (content.length === 0) {
       $("#noTweet").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
     } else if (content.length > 140) {
       $("#tooMuchTweet").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
     } else {
-      let formData = $(this).serialize();
+      var formData = $(this).serialize();
       postTweets(formData);
       $('textarea').val("");
+      $(".counter").text("140");
     }
   });
+
+// $(".icons").on("click", function() {
+// })
+
 });

@@ -2,7 +2,7 @@
   z-index: 1;
   top:0;
   position: fixed;
-  height: 80px;
+  height: 5em;
   width: 100%;
   background-color: #00a087;
   color: #e8fdff;
@@ -14,15 +14,15 @@
 
 #nav-bar .logo{
   float: left;
-  height: 80px;
-  width: 80px;
+  height: 5em;
+  width: 5em;
 }
 
 #nav-bar .header{
   float: left;
-  line-height:80px;
+  line-height:225%;
   font-size: 200%;
-  padding-left: 10px;
+  padding-left: 0.4em;
 
 }
 
@@ -35,7 +35,7 @@
   -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
   border: 1px solid black;
-  padding: 15px;
+  padding: 0.8em;
   float: right;
   border-radius: 5px
 }
@@ -43,4 +43,13 @@
 #nav-bar .button:hover{
   color: black;
   opacity:1;
+}
+
+@media (max-width: 390px){
+  #nav-bar {
+    display: flex;
+  }
+  #nav-bar > *{
+
+  }
 }
