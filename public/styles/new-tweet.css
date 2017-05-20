@@ -1,3 +1,4 @@
+/* CSS for the compose tweet text entry */
 
 .container .new-tweet {
   max-width: 100%;
@@ -10,37 +11,32 @@
   border: 1px solid #d3d3d3;
   border-radius: 5px;
   overflow: auto;
- }
-
-.new-tweet h2 {
-  margin-top: 5px;
-  text-align: left;
-  border-bottom: 1px solid #313030
- }
-
-.new-tweet input {
-  float: left;
-  background-color: #eee;
-  }
-
-.new-tweet .error {display: inline-block;}
-
-.new-tweet .error p {
-    margin: 0 20px;
-    color: red;
 }
-
-.new-tweet textarea {
-  width: 100%;
-  padding: 3px;
- }
-
 .new-tweet .counter {
   font-style: italic;
   font-size: 85%;
   float: right;
- }
-
-.new-tweet .redmax {color: red;}
-
-
+}
+.new-tweet .error {
+  display: inline-block;
+}
+.new-tweet .error p {
+  margin: 0 20px;
+  color: red;
+}
+.new-tweet h2 {
+  margin-top: 5px;
+  text-align: left;
+  border-bottom: 1px solid #313030
+}
+.new-tweet input {
+  float: left;
+  background-color: #eee;
+}
+.new-tweet textarea {
+  width: 100%;
+  padding: 3px;
+}
+.new-tweet .redmax {
+  color: red;
+}

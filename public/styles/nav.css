@@ -1,6 +1,8 @@
-#nav-bar{
+/* CSS for nav bar */
+
+#nav-bar {
   z-index: 1;
-  top:0;
+  top: 0;
   position: fixed;
   height: 5em;
   width: 100%;
@@ -11,45 +13,36 @@
   padding-bottom: 0px;
   padding-top: 0px;
 }
-
-#nav-bar .logo{
-  float: left;
-  height: 5em;
-  width: 5em;
-}
-
-#nav-bar .header{
-  float: left;
-  line-height:225%;
-  font-size: 200%;
-  padding-left: 0.4em;
-
-}
-
-#nav-bar .button{
+#nav-bar .button {
   opacity: 0.9;
   color: #00a087;
   font-size: 125%;
   margin: 0.5em;
   background-color: white;
   -webkit-border-radius: 5px;
--moz-border-radius: 5px;
+  -moz-border-radius: 5px;
   border: 1px solid black;
   padding: 0.8em;
   float: right;
   border-radius: 5px
 }
-
-#nav-bar .button:hover{
+#nav-bar .button:hover {
   color: black;
-  opacity:1;
+  opacity: 1;
 }
-
-@media (max-width: 390px){
+#nav-bar .header {
+  float: left;
+  line-height: 225%;
+  font-size: 200%;
+  padding-left: 0.4em;
+}
+#nav-bar .logo {
+  float: left;
+  height: 5em;
+  width: 5em;
+}
+@media (max-width: 390px) {
   #nav-bar {
     display: flex;
-  }
-  #nav-bar > *{
-
   }
 }

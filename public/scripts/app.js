@@ -1,20 +1,16 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
+
 $(document).ready(function() {
   var tweetContainer = $('#tweets');
 
+  // Makes sure people can't add code into text inputs
   function escape(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   }
 
-
+  // creates elements on the page for each tweet
   function createTweetElement(tweet) {
-    var $tweet = $('<article>').addClass('tweet');
     var date = (new Date(tweet.created_at)).toISOString();
     const html = `
       <article>
@@ -35,22 +31,27 @@ $(document).ready(function() {
     return $(html);
   }
 
+  // Renders the tweets via loop and adds them to the top of the page
   function renderTweets(tweets) {
-    $("#tweet-container").empty();
+    var tweetContainer = $("#tweet-container");
+    tweetContainer.empty();
     for (var i = 0; i < tweets.length; i++) {
       var tweet = tweets[i];
-      $("#tweet-container").prepend(createTweetElement(tweet));
+      tweetContainer.prepend(createTweetElement(tweet));
     }
+
+    // Used for formating the date. Must be called after appending tweets to the dom.
     $(".timeago").timeago();
   }
 
+  // slides the tweet entry box down when you click the compose button + a few UX tweeks
   $(".button").on("click", function() {
     $(".new-tweet").slideToggle();
     $("textarea").focus();
     $("body").scrollTop(0);
   });
 
-
+  // loads the tweets via ajax on success calls on the renderTweets function
   function loadTweets() {
     $.ajax({
       url: '/tweets',
@@ -61,19 +62,23 @@ $(document).ready(function() {
     });
   }
 
-  function postTweets(data) {
+  // sends the tweet data to the server on success calls on the loadTweets function
+  function saveTweet(data) {
     $.ajax({
       url: '/tweets',
       method: 'POST',
       data: data,
       success: function(data) {
         loadTweets();
+        $('textarea').val("");
+        $(".counter").text("140");
       }
     });
   }
 
   loadTweets();
 
+  // error alerts for no tweet or too long tweet else calls on postTweet function. The text area and char counter are reset
   $("form").on("submit", function(evt) {
     evt.preventDefault();
     var content = $("textarea").val();
@@ -83,13 +88,7 @@ $(document).ready(function() {
       $("#tooMuchTweet").fadeIn(200).fadeOut(200).fadeIn(200).fadeOut(200).fadeIn(200);
     } else {
       var formData = $(this).serialize();
-      postTweets(formData);
-      $('textarea').val("");
-      $(".counter").text("140");
+      saveTweet(formData);
     }
   });
-
-// $(".icons").on("click", function() {
-// })
-
 });
